@@ -31,3 +31,35 @@ Structurer la décision d’intégrer un cas d’usage IA dans le backlog.
 |------|------------|
 | Produit | PO |
 | Données | Data |
+
+---
+
+### 🔷 Diagramme du flux
+Demande affaire
+|
+v
+Analyse valeur PO
+|
+v
+[ Valeur suffisante ? ]
+/        
+NON        OUI
+|           |
+Rejet   Validation données
+|
+v
+[ Données disponibles ? ]
+/        
+NON         OUI
+|            |
+Attente     Analyse TI
+|
+v
+[ Faisable ? ]
+/      
+NON       OUI
+|          |
+Re-cadrage     Backlog
+|
+v
+Livraison
