@@ -1,17 +1,18 @@
-## Flux Data — Chaîne analytique simplifiée
+## Flux opérationnel — Traitement de demandes multi-étapes
 
 ### 🎯 Objectif
-Modéliser un flux de données complet allant des sources opératoires jusqu’à la consommation analytique.
+Structurer un flux complet de traitement d’une demande, depuis sa réception jusqu’à son utilisation finale.
 
 ---
 
 ### 🔷 Vue d’ensemble
 
-Pipeline structuré en 4 couches :
-- Sources
-- Ingestion
-- Valorisation
-- Consommation
+Le processus est structuré en 4 couches :
+
+- Origine des demandes
+- Préparation
+- Structuration
+- Utilisation
 
 ---
 
@@ -19,78 +20,84 @@ Pipeline structuré en 4 couches :
 
 | Domaine | Rôle |
 |--------|------|
-| Produit | Définit les besoins et priorités |
-| Data | Gère ingestion, qualité et transformation |
-| TI | Assure l’infrastructure et la livraison |
+| Produit | Définit les règles et priorités |
+| Opérations | Traite et enrichit les demandes |
+| Technologie | Automatise et supporte le flux |
 
 ---
 
-### 🔷 Étapes du pipeline
+### 🔷 Étapes
 
-#### Sources
-- Applications métiers
-- APIs externes
-- Données historiques
+#### Origine
+- Canaux utilisateurs
+- Systèmes internes
+- Historique de demandes
 
-#### Ingestion
-- Zone brute (raw)
-- Zone nettoyée (clean)
-- Zone enrichie
+#### Préparation
+- Réception brute
+- Filtrage
+- Normalisation
 
-#### Valorisation
-- Construction des modèles
-- Règles de transformation
-- Agrégation des indicateurs
+#### Structuration
+- Organisation des informations
+- Application des règles
+- Création d’éléments exploitables
 
-#### Consommation
-- Tableaux de bord
-- Rapports
-- Services analytiques
+#### Utilisation
+- Interfaces utilisateurs
+- Outils internes
+- Services automatisés
 
 ---
 
-### 🔷 Diagramme global (architecture)
+### 🔷 Diagramme du flux
 
 ```mermaid
 flowchart LR
 
-%% SOURCES
-subgraph Sources
-    S1[Applications métiers]
-    S2[APIs externes]
-    S3[Données historiques]
+%% ORIGINE
+subgraph Origine
+    O1[Canaux utilisateurs]
+    O2[Systèmes internes]
+    O3[Historique]
 end
 
-%% INGESTION
-subgraph Ingestion
-    I1[Zone brute]
-    I2[Zone nettoyée]
-    I3[Zone enrichie]
+%% PREPARATION
+subgraph Préparation
+    P1[Réception brute]
+    P2[Filtrage]
+    P3[Normalisation]
 end
 
-%% VALORISATION
-subgraph Valorisation
-    V1[Modélisation]
-    V2[Transformation]
-    V3[Indicateurs]
+%% STRUCTURATION
+subgraph Structuration
+    S1[Organisation]
+    S2[Application règles]
+    S3[Production finale]
 end
 
-%% CONSOMMATION
-subgraph Consommation
-    C1[BI / dashboards]
-    C2[Rapports]
-    C3[Services analytiques]
+%% UTILISATION
+subgraph Utilisation
+    U1[Interface utilisateur]
+    U2[Outils internes]
+    U3[Services automatisés]
 end
 
-%% FLOW
-S1 --> I1
-S2 --> I1
-S3 --> I1
+%% FLUX
+O1 --> P1
+O2 --> P1
+O3 --> P1
 
-I1 --> I2 --> I3
-I3 --> V1 --> V2 --> V3
+P1 --> P2 --> P3
+P3 --> S1 --> S2 --> S3
 
-V3 --> C1
-V3 --> C2
-V3 --> C3
+S3 --> U1
+S3 --> U2
+S3 --> U3
+
+%% COULEURS
+style Origine fill:#f2f2f2,stroke:#999
+style Préparation fill:#e6f2ff,stroke:#3399ff
+style Structuration fill:#e6ffe6,stroke:#33cc66
+style Utilisation fill:#f9f2ec,stroke:#cc7a00
 
