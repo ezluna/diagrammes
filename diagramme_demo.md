@@ -57,42 +57,12 @@ flowchart LR
 
 ```mermaid
 flowchart LR
+    A[Demande affaire] --> B[Analyse PO]
+    B --> C{Valeur ?}
 
-A[Demande affaire] --> B[Analyse valeur PO]
+    C -->|Faible| D[Rejet]
+    C -->|Forte| E[Validation données]
 
-B --> C{Valeur suffisante ?}
-C -->|Non| D[Rejet + feedback affaires]
-C -->|Oui| E[Validation données]
-
-E --> F{Données disponibles ?}
-F -->|Non| G[Attente dépendance data]
-G --> E
-
-F -->|Oui| H[Exploration data]
-H --> I{Qualité suffisante ?}
-
-I -->|Non| J[Nettoyage / enrichissement]
-J --> H
-
-I -->|Oui| K[Analyse TI]
-
-K --> L{Faisabilité ?}
-L -->|Non| M[Re-cadrage solution]
-M --> B
-
-L -->|Oui| N[Backlog]
-
-N --> O[Développement]
-O --> P[Test UAT]
-
-P --> Q{Validation OK ?}
-Q -->|Non| R[Correction / ajustement]
-R --> O
-
-Q -->|Oui| S[Livraison]
-
-S --> T[Retour utilisateurs]
-T --> B
-``
-
-
+    E --> F{Données disponibles ?}
+    F -->|Non| G[Attente]
+    F -->|Oui| H[Analyse TI]
