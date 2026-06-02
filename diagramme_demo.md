@@ -51,9 +51,20 @@ Permettre d’analyser, prioriser et livrer des cas d’usage IA tout en assuran
 
 ```mermaid
 flowchart LR
-    A[Affaires] --> B[PO]
-    B --> C[Équipe Data]
-    B --> D[TI]
-    C --> B
-    D --> B
+    A[Demande affaire] --> B[Analyse PO]
+    B --> C{Valeur ?}
+
+    C -->|Faible| D[Rejet]
+    C -->|Forte| E[Validation données]
+
+    E --> F{Données disponibles ?}
+    F -->|Non| G[Attente]
+    F -->|Oui| H[Analyse TI]
+
+    H --> I{Faisable ?}
+    I -->|Non| J[Re-cadrage]
+    I -->|Oui| K[Backlog]
+
+    K --> L[Développement]
+    L --> M[Livraison]
 
