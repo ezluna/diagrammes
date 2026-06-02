@@ -47,43 +47,20 @@ Permettre d’analyser, prioriser et livrer des cas d’usage IA tout en assuran
 
 ---
 
-### 🔷 Diagramme de contexte
+### 🔷 Diagramme - Flux de contexte (Mermaid)
 
 ```mermaid
 flowchart LR
-    A[Demande affaire] --> B[Analyse valeur PO]
-    
-    B --> C{Valeur suffisante ?}
-    C -->|Non| D[Rejet + feedback affaires]
-    C -->|Oui| E[Validation données]
-    
+    A[Demande affaire] --> B[Analyse PO]
+    B --> C{Valeur ?}
+
+    C -->|Faible| D[Rejet]
+    C -->|Forte| E[Validation données]
+
     E --> F{Données disponibles ?}
-    F -->|Non| G[Attente dépendance data]
-    G --> E
-    
-    F -->|Oui| H[Exploration data]
-    H --> I{Qualité suffisante ?}
-    
-    I -->|Non| J[Nettoyage / enrichissement]
-    J --> H
-    
-    I -->|Oui| K[Analyse TI]
-    
-    K --> L{Faisabilité ?}
-    L -->|Non| M[Re-cadrage solution]
-    M --> B
-    
-    L -->|Oui| N[Backlog]
-    
-    N --> O[Développement]
-    O --> P[Test UAT]
-    
-    P --> Q{Validation OK ?}
-    Q -->|Non| R[Correction / ajustement]
-    R --> O
-    
-    Q -->|Oui| S[Livraison]
-    
-    S --> T[Retour utilisateurs]
-    T --> B
-    
+    F -->|Non| G[Attente]
+    F -->|Oui| H[Analyse TI]
+
+    H --> I{Faisable ?}
+    I -->|Non| J[Re-cadrage]
+    I -->|Oui| K[Backlog]
