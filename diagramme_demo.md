@@ -56,3 +56,25 @@ flowchart LR
     B --> D[TI]
     C --> B
     D --> B
+
+---
+### 🔷 Diagramme décisionnel
+```mermaid
+flowchart LR
+    A[Demande affaire] --> B[Analyse PO]
+    B --> C{Valeur ?}
+
+    C -->|Faible| D[Rejet]
+    C -->|Forte| E[Validation données]
+
+    E --> F{Données disponibles ?}
+    F -->|Non| G[Attente]
+    F -->|Oui| H[Analyse TI]
+
+    H --> I{Faisable ?}
+    I -->|Non| J[Re-cadrage]
+    I -->|Oui| K[Backlog]
+
+    K --> L[Développement]
+    L --> M[Livraison]
+
