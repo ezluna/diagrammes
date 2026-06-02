@@ -56,9 +56,9 @@ flowchart LR
     B --> D[TI]
     C --> B
     D --> B
+``
 
 ---
-``
 
 ### 🔷 Diagramme décisionnel 
 
