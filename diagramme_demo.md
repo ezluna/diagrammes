@@ -56,12 +56,11 @@ flowchart LR
     B --> D[TI]
     C --> B
     D --> B
-``
 
 ---
 
 ### 🔷 Diagramme décisionnel 
-
+```mermaid
 flowchart LR
     A[Demande affaire] --> B[Analyse PO]
     B --> C{Valeur ?}
