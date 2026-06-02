@@ -51,20 +51,47 @@ Permettre d’analyser, prioriser et livrer des cas d’usage IA tout en assuran
 
 ```mermaid
 flowchart LR
-    A[Demande affaire] --> B[Analyse PO]
-    B --> C{Valeur ?}
 
-    C -->|Faible| D[Rejet]
-    C -->|Forte| E[Validation données]
+%% --- INIT ---
+A[Demande affaire] --> B[Analyse valeur PO]
 
-    E --> F{Données disponibles ?}
-    F -->|Non| G[Attente]
-    F -->|Oui| H[Analyse TI]
+%% --- DECISION VALEUR ---
+B --> C{Valeur suffisante ?}
+C -->|Non| D[Rejet + feedback affaires]
+C -->|Oui| E[Validation données]
 
-    H --> I{Faisable ?}
-    I -->|Non| J[Re-cadrage]
-    I -->|Oui| K[Backlog]
+%% --- DATA ---
+E --> F{Données disponibles ?}
+F -->|Non| G[Attente dépendance data]
+G --> E  %% boucle data
 
-    K --> L[Développement]
-    L --> M[Livraison]
+F -->|Oui| H[Exploration data]
+H --> I{Qualité suffisante ?}
+
+I -->|Non| J[Nettoyage / enrichissement]
+J --> H   %% boucle qualité data
+
+I -->|Oui| K[Analyse TI]
+
+%% --- TI ---
+K --> L{Faisabilité ?}
+L -->|Non| M[Re-cadrage solution]
+M --> B   %% boucle produit (retour PO)
+
+L -->|Oui| N[Backlog]
+
+%% --- DELIVERY ---
+N --> O[Développement]
+O --> P[Test UAT]
+
+%% --- VALIDATION ---
+P --> Q{Validation OK ?}
+Q -->|Non| R[Correction / ajustement]
+R --> O   %% boucle dev
+
+Q -->|Oui| S[Livraison]
+
+%% --- POST-LIVRAISON ---
+S --> T[Retour utilisateurs]
+T --> B   %% boucle amélioration continue
 
